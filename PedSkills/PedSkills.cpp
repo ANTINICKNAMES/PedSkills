@@ -44,6 +44,7 @@ float gWeaponRangeMult2 = 2.0f;
 float gWeaponRangeMult3 = 3.0f;
 float gWeaponAimMult = 1.0f;
 float gPlayerVehMissionDamMult = 1.0f;
+float gDefaultPlayerResistance = 0.33f;
 float gWeaponAimMult025 = 0.25f;
 float gWeaponAimMult05 = 0.5f;
 float gWeaponAimMult4 = 4.0f;
@@ -511,6 +512,12 @@ public:
 						});
 					}
 				}
+			}
+
+			if (ReadIniFloat(ini, "General", "PlayerDamageMultiplier", &f))
+			{
+				gDefaultPlayerResistance = f;
+				WriteMemory<float>(0x85AD74, gDefaultPlayerResistance, true);
 			}
 
 			initialized = true;
